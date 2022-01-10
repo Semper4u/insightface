@@ -92,7 +92,7 @@ The supported methods are as follows:
 - [x] [PartialFC_mxnet (Arxiv'2020)](recognition/partial_fc)
 - [x] [PartialFC_torch (Arxiv'2020)](recognition/arcface_torch)
 - [x] [VPL (CVPR'2021)](recognition/vpl)
-- [x] [OneFlow_face](recognition/oneflow_face)
+- [x] [Arcface_oneflow](recognition/arcface_oneflow)
 - [x] [ArcFace_Paddle (CVPR'2019)](recognition/arcface_paddle)
 
 Commonly used network backbones are included in most of the methods, such as IResNet, MobilefaceNet, MobileNet, InceptionResNet_v2, DenseNet, etc..
@@ -121,7 +121,12 @@ We provide standard IJB and Megaface evaluation pipelines in [evaluation](recogn
 - Caffe: [arcface-caffe](https://github.com/xialuxi/arcface-caffe)
 - Caffe: [CombinedMargin-caffe](https://github.com/gehaocool/CombinedMargin-caffe)
 - Tensorflow: [InsightFace-tensorflow](https://github.com/luckycallor/InsightFace-tensorflow)
-- TensorRT: [wang-xinyu/tensorrtx](https://github.com/wang-xinyu/tensorrtx)
+- TensorRT: [wang-xinyu/tensorrtx](https://github.com/wang-xinyu/tensorrtx)  
+- TensorRT: [InsightFace-REST](https://github.com/SthPhoenix/InsightFace-REST)
+- ONNXRuntime C++: [ArcFace-ONNXRuntime](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/glint_arcface.cpp)
+- MNN: [ArcFace-MNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_glint_arcface.cpp)
+- TNN: [ArcFace-TNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_glint_arcface.cpp)
+- NCNN: [ArcFace-NCNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_glint_arcface.cpp)
 
 ## Face Detection
 
