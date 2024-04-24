@@ -1,6 +1,8 @@
 ## Introduction
 
-SCRFD is an efficient high accuracy face detection approach which initially described in [Arxiv](https://arxiv.org/abs/2105.04714).
+SCRFD is an efficient high accuracy face detection approach which initially described in [Arxiv](https://arxiv.org/abs/2105.04714), and accepted by ICLR-2022.
+
+Try out the Gradio Web Demo: [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/hysts/insightface-SCRFD)
 
 <img src="https://github.com/nttstar/insightface-resources/blob/master/images/scrfd_evelope.jpg" width="400" alt="prcurve"/>
 
@@ -165,6 +167,10 @@ We provide an example for searching SCRFD-2.5GF in this repo as below.
 6. Test these new generated configs again and select the top accurate one(s).
 
 
+## Acknowledgments
+
+We thank [nihui](https://github.com/nihui) for the excellent [mobile-phone demo](https://github.com/nihui/ncnn-android-scrfd).
+
 ## Demo
 
 1. [ncnn-android-scrfd](https://github.com/nihui/ncnn-android-scrfd)
@@ -173,3 +179,5 @@ We provide an example for searching SCRFD-2.5GF in this repo as below.
 4. [scrfd-NCNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_scrfd.cpp)
 5. [scrfd-ONNXRuntime C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/scrfd.cpp)
 6. [TensorRT Python](https://github.com/SthPhoenix/InsightFace-REST/blob/master/src/api_trt/modules/model_zoo/detectors/scrfd.py)
+7. [Modelscope demo for rotated face](https://modelscope.cn/models/damo/cv_resnet_facedetection_scrfd10gkps/summary)
+8. [Modelscope demo for card detection](https://modelscope.cn/models/damo/cv_resnet_carddetection_scrfd34gkps/summary)

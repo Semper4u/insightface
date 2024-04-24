@@ -9,32 +9,6 @@ InsightFace project is mainly maintained By [Jia Guo](mailto:guojia@gmail.com?su
 
 For all main contributors, please check [contributing](#contributing).
 
-## Top News
-
-**`2021-11-30`**: [MFR-Ongoing](challenges/mfr) challenge launched, which is an extended version of [iccv21-mfr](challenges/iccv21-mfr).
-
-**`2021-11-25`**: Training face landmarks by synthetic data, see [alignment/synthetics](alignment/synthetics).
-
-**`2021-10-29`**: We achieved 1st place on the [VISA track](https://pages.nist.gov/frvt/plots/11/visa.html) of [NIST-FRVT 1:1](https://pages.nist.gov/frvt/html/frvt11.html) by using Partial FC (Xiang An, Jiankang Deng, Jia Guo).
-
-**`2021-10-11`**: [Leaderboard](https://insightface.ai/mfr21) of [ICCV21 - Masked Face Recognition Challenge](challenges/iccv21-mfr) released. Video: [Youtube](https://www.youtube.com/watch?v=lL-7l5t6x2w), [Bilibili](https://www.bilibili.com/video/BV15b4y1h79N/).
-
-**`2021-09-22`**: Update python library to ver-0.5, add new MBF and IR50 models, see [python-package](python-package).
-
-**`2021-08-07`**: Add new [model_zoo](model_zoo) page.
-
-**`2021-07-13`**: We now have implementations based on [paddlepaddle](https://github.com/PaddlePaddle): [arcface_paddle](recognition/arcface_paddle) for face recognition and [blazeface_paddle](detection/blazeface_paddle) for face detection.
-
-**`2021-07-09`**: We add a [person_detection](examples/person_detection) example, trained by [SCRFD](detection/scrfd), which can be called directly by our [python-library](python-package).
-
-**`2021-06-05`**: We launch a [Masked Face Recognition Challenge & Workshop](challenges/iccv21-mfr) on ICCV 2021.
-
-**`2021-05-15`**: We released an efficient high accuracy face detection approach called [SCRFD](detection/scrfd).
-
-**`2021-04-18`**: We achieved Rank-4th on NIST-FRVT 1:1, see [leaderboard](https://pages.nist.gov/frvt/html/frvt11.html).
-
-**`2021-03-13`**: We have released our official ArcFace PyTorch implementation, see [here](recognition/arcface_torch). 
-
 ## License
 
 The code of InsightFace is released under the MIT License. There is no limitation for both academic and commercial usage.
@@ -42,6 +16,52 @@ The code of InsightFace is released under the MIT License. There is no limitatio
 The training data containing the annotation (and the models trained with these data) are available for non-commercial research purposes only.
 
 Both manual-downloading models from our github repo and auto-downloading models with our [python-library](python-package) follow the above license policy(which is for non-commercial research purposes only).
+
+## Top News
+
+**`2024-04-17`**: [Monocular Identity-Conditioned Facial Reflectance Reconstruction](https://arxiv.org/abs/2404.00301) accepted by [CVPR-2024](https://cvpr.thecvf.com/Conferences/2024).
+
+**`2023-04-01`**: We move the swapping demo to Discord bot, which support editing on Midjourney generated images, see detail at [web-demos/swapping_discord](web-demos/swapping_discord).
+
+**`2022-08-12`**: We achieved Rank-1st of 
+[Perspective Projection Based Monocular 3D Face Reconstruction Challenge](https://tianchi.aliyun.com/competition/entrance/531961/introduction)
+of [ECCV-2022 WCPA Workshop](https://sites.google.com/view/wcpa2022), [paper](https://arxiv.org/abs/2208.07142) and [code](reconstruction/jmlr).
+
+**`2021-11-30`**: [MFR-Ongoing](challenges/mfr) challenge launched(same with IFRT), which is an extended version of [iccv21-mfr](challenges/iccv21-mfr).
+
+**`2021-10-29`**: We achieved 1st place on the [VISA track](https://pages.nist.gov/frvt/plots/11/visa.html) of [NIST-FRVT 1:1](https://pages.nist.gov/frvt/html/frvt11.html) by using Partial FC (Xiang An, Jiankang Deng, Jia Guo).
+
+## ChangeLogs
+
+**`2023-08-08`**: We released the implementation of [Generalizing Gaze Estimation with Weak-Supervision from Synthetic Views](https://arxiv.org/abs/2212.02997) at [reconstruction/gaze](reconstruction/gaze).
+
+**`2023-05-03`**: We have launched the ongoing version of wild face anti-spoofing challenge. See details [here](https://github.com/deepinsight/insightface/tree/master/challenges/cvpr23-fas-wild#updates).
+
+**`2023-04-01`**: We move the swapping demo to Discord bot, which support editing on Midjourney generated images, see detail at [web-demos/swapping_discord](web-demos/swapping_discord).
+
+**`2023-02-13`**: We launch a large scale in the wild face anti-spoofing challenge on CVPR23 Workshop, see details at [challenges/cvpr23-fas-wild](challenges/cvpr23-fas-wild).
+
+**`2022-11-28`**: Single line code for facial identity swapping in our python packge ver 0.7, please check the example [here](examples/in_swapper).
+
+**`2022-10-28`**: [MFR-Ongoing](http://iccv21-mfr.com) website is refactored, please create issues if there's any bug.
+
+**`2022-09-22`**: Now we have [web-demos](web-demos): [face-localization](http://demo.insightface.ai:7007/), [face-recognition](http://demo.insightface.ai:7008/), and [face-swapping](http://demo.insightface.ai:7009/).
+
+**`2022-08-12`**: We achieved Rank-1st of 
+[Perspective Projection Based Monocular 3D Face Reconstruction Challenge](https://tianchi.aliyun.com/competition/entrance/531961/introduction)
+of [ECCV-2022 WCPA Workshop](https://sites.google.com/view/wcpa2022), [paper](https://arxiv.org/abs/2208.07142) and [code](reconstruction/jmlr).
+
+**`2022-03-30`**: [Partial FC](https://arxiv.org/abs/2203.15565) accepted by CVPR-2022.
+
+**`2022-02-23`**: [SCRFD](detection/scrfd) accepted by [ICLR-2022](https://iclr.cc/Conferences/2022).
+
+**`2021-11-30`**: [MFR-Ongoing](challenges/mfr) challenge launched(same with IFRT), which is an extended version of [iccv21-mfr](challenges/iccv21-mfr).
+
+**`2021-10-29`**: We achieved 1st place on the [VISA track](https://pages.nist.gov/frvt/plots/11/visa.html) of [NIST-FRVT 1:1](https://pages.nist.gov/frvt/html/frvt11.html) by using Partial FC (Xiang An, Jiankang Deng, Jia Guo).
+
+**`2021-10-11`**: [Leaderboard](https://insightface.ai/mfr21) of [ICCV21 - Masked Face Recognition Challenge](challenges/iccv21-mfr) released. Video: [Youtube](https://www.youtube.com/watch?v=lL-7l5t6x2w), [Bilibili](https://www.bilibili.com/video/BV15b4y1h79N/).
+
+**`2021-06-05`**: We launch a [Masked Face Recognition Challenge & Workshop](challenges/iccv21-mfr) on ICCV 2021.
 
 
 
@@ -89,8 +109,8 @@ The supported methods are as follows:
 - [x] [ArcFace_mxnet (CVPR'2019)](recognition/arcface_mxnet)
 - [x] [ArcFace_torch (CVPR'2019)](recognition/arcface_torch)
 - [x] [SubCenter ArcFace (ECCV'2020)](recognition/subcenter_arcface)
-- [x] [PartialFC_mxnet (Arxiv'2020)](recognition/partial_fc)
-- [x] [PartialFC_torch (Arxiv'2020)](recognition/arcface_torch)
+- [x] [PartialFC_mxnet (CVPR'2022)](recognition/partial_fc)
+- [x] [PartialFC_torch (CVPR'2022)](recognition/arcface_torch)
 - [x] [VPL (CVPR'2021)](recognition/vpl)
 - [x] [Arcface_oneflow](recognition/arcface_oneflow)
 - [x] [ArcFace_Paddle (CVPR'2019)](recognition/arcface_paddle)
@@ -124,6 +144,7 @@ We provide standard IJB and Megaface evaluation pipelines in [evaluation](recogn
 - TensorRT: [wang-xinyu/tensorrtx](https://github.com/wang-xinyu/tensorrtx)  
 - TensorRT: [InsightFace-REST](https://github.com/SthPhoenix/InsightFace-REST)
 - ONNXRuntime C++: [ArcFace-ONNXRuntime](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/glint_arcface.cpp)
+- ONNXRuntime Go: [arcface-go](https://github.com/jack139/arcface-go)
 - MNN: [ArcFace-MNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_glint_arcface.cpp)
 - TNN: [ArcFace-TNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_glint_arcface.cpp)
 - NCNN: [ArcFace-NCNN](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_glint_arcface.cpp)
@@ -175,11 +196,24 @@ Supported methods:
 If you find *InsightFace* useful in your research, please consider to cite the following related papers:
 
 ```
+@inproceedings{ren2023pbidr,
+  title={Facial Geometric Detail Recovery via Implicit Representation},
+  author={Ren, Xingyu and Lattas, Alexandros and Gecer, Baris and Deng, Jiankang and Ma, Chao and Yang, Xiaokang},
+  booktitle={2023 IEEE 17th International Conference on Automatic Face and Gesture Recognition (FG)},  
+  year={2023}
+ }
 
 @article{guo2021sample,
   title={Sample and Computation Redistribution for Efficient Face Detection},
   author={Guo, Jia and Deng, Jiankang and Lattas, Alexandros and Zafeiriou, Stefanos},
   journal={arXiv preprint arXiv:2105.04714},
+  year={2021}
+}
+
+@inproceedings{gecer2021ostec,
+  title={OSTeC: One-Shot Texture Completion},
+  author={Gecer, Baris and Deng, Jiankang and Zafeiriou, Stefanos},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2021}
 }
 
@@ -235,4 +269,4 @@ Main contributors:
 - [Jiankang Deng](https://github.com/jiankangdeng) ``jiankangdeng[at]gmail.com``
 - [Xiang An](https://github.com/anxiangsir) ``anxiangsir[at]gmail.com``
 - [Jack Yu](https://github.com/szad670401) ``jackyu961127[at]gmail.com``
-
+- [Baris Gecer](https://barisgecer.github.io/) ``barisgecer[at]msn.com``

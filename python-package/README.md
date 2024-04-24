@@ -8,9 +8,42 @@ The code of InsightFace Python Library is released under the MIT License. There 
 
 ## Install
 
-```
-pip install -U insightface
-```
+### Install Inference Backend
+
+For ``insightface<=0.1.5``, we use MXNet as inference backend.
+
+Starting from insightface>=0.2, we use onnxruntime as inference backend.
+
+You have to install ``onnxruntime-gpu`` manually to enable GPU inference, or install ``onnxruntime`` to use CPU only inference.
+
+## Change Log
+
+### [0.7.1] - 2022-12-14
+  
+#### Changed
+  
+- Change model downloading provider to cloudfront.
+
+### [0.7] - 2022-11-28
+  
+#### Added
+
+- Add face swapping model and example.
+ 
+#### Changed
+  
+- Set default ORT provider to CUDA and CPU.
+ 
+### [0.6] - 2022-01-29
+  
+#### Added
+
+- Add pose estimation in face-analysis app.
+ 
+#### Changed
+  
+- Change model automated downloading url, to ucloud.
+ 
 
 ## Quick Example
 
@@ -31,29 +64,23 @@ cv2.imwrite("./t1_output.jpg", rimg)
 
 This quick example will detect faces from the ``t1.jpg`` image and draw detection results on it.
 
-## Inference Backend
 
-For ``insightface<=0.1.5``, we use MXNet as inference backend.
-
-(You may please download all models from [onedrive](https://1drv.ms/u/s!AswpsDO2toNKrUy0VktHTWgIQ0bn?e=UEF7C4), and put them all under `~/.insightface/models/` directory to use this old version)
-
-Starting from insightface>=0.2, we use onnxruntime as inference backend.
-
-(You have to install ``onnxruntime-gpu`` to enable GPU inference)
 
 ## Model Zoo
 
 In the latest version of insightface library, we provide following model packs:
 
-Name in **bold** is the default model pack.
+Name in **bold** is the default model pack. **Auto** means we can download the model pack through the python library directly.
 
-| Name           | Detection Model | Recognition Model   | Alignment    | Attributes | Model-Size |
-| -------------- | --------------- | ------------------- | ------------ | ---------- | ---------- |
-| antelopev2 | SCRFD-10GF      | ResNet100@Glint360K | 2d106 & 3d68 | Gender&Age | 407MB |
-| **buffalo_l**      | SCRFD-10GF      | ResNet50@WebFace600K | 2d106 & 3d68 | Gender&Age | 326MB |
-| buffalo_m      | SCRFD-2.5GF     | ResNet50@WebFace600K | 2d106 & 3d68 | Gender&Age | 313MB |
-| buffalo_s      | SCRFD-500MF     | MBF@WebFace600K | 2d106 & 3d68 | Gender&Age | 159MB |
-| buffalo_sc      | SCRFD-500MF     | MBF@WebFace600K | - | - | 16MB |
+Once you manually downloaded the zip model pack, unzip it under `~/.insightface/models/` first before you call the program.
+
+| Name          | Detection Model | Recognition Model    | Alignment    | Attributes | Model-Size | Link                                                         | Auto |
+| ------------- | --------------- | -------------------- | ------------ | ---------- | ---------- | ------------------------------------------------------------ | ------------- |
+| antelopev2    | SCRFD-10GF      | ResNet100@Glint360K  | 2d106 & 3d68 | Gender&Age | 407MB      | [link](https://drive.google.com/file/d/18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8/view?usp=sharing) | N             |
+| **buffalo_l** | SCRFD-10GF      | ResNet50@WebFace600K | 2d106 & 3d68 | Gender&Age | 326MB      | [link](https://drive.google.com/file/d/1qXsQJ8ZT42_xSmWIYy85IcidpiZudOCB/view?usp=sharing) | Y             |
+| buffalo_m     | SCRFD-2.5GF     | ResNet50@WebFace600K | 2d106 & 3d68 | Gender&Age | 313MB      | [link](https://drive.google.com/file/d/1net68yNxF33NNV6WP7k56FS6V53tq-64/view?usp=sharing) | N             |
+| buffalo_s     | SCRFD-500MF     | MBF@WebFace600K      | 2d106 & 3d68 | Gender&Age | 159MB      | [link](https://drive.google.com/file/d/1pKIusApEfoHKDjeBTXYB3yOQ0EtTonNE/view?usp=sharing) | N             |
+| buffalo_sc    | SCRFD-500MF     | MBF@WebFace600K      | -            | -          | 16MB       | [link](https://drive.google.com/file/d/19I-MZdctYKmVf3nu5Da3HS6KH5LBfdzG/view?usp=sharing) | N             |
 
 
 
@@ -79,11 +106,7 @@ For insightface>=0.3.3, models will be downloaded automatically once we init ``a
 For insightface==0.3.2, you must first download the model package by command:
 
 ```
-insightface-cli model.download antelope
-```
-or
-```
-insightface-cli model.download antelopev2
+insightface-cli model.download buffalo_l
 ```
 
 ## Use Your Own Licensed Model
@@ -109,7 +132,7 @@ app.prepare(ctx_id=0, det_size=(640, 640))
 
 # Method-2, load model directly
 detector = insightface.model_zoo.get_model('your_detection_model.onnx')
-detector.prepare(ctx_id=0, det_size=(640, 640))
+detector.prepare(ctx_id=0, input_size=(640, 640))
 
 ```
 

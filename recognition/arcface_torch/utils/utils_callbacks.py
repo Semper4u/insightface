@@ -13,7 +13,7 @@ from torch import distributed
 
 class CallBackVerification(object):
     
-    def __init__(self, val_targets, rec_prefix, summary_writer=None, image_size=(112, 112)):
+    def __init__(self, val_targets, rec_prefix, summary_writer=None, image_size=(112, 112), wandb_logger=None):
         self.rank: int = distributed.get_rank()
         self.highest_acc: float = 0.0
         self.highest_acc_list: List[float] = [0.0] * len(val_targets)
@@ -23,6 +23,7 @@ class CallBackVerification(object):
             self.init_dataset(val_targets=val_targets, data_dir=rec_prefix, image_size=image_size)
 
         self.summary_writer = summary_writer
+        self.wandb_logger = wandb_logger
 
     def ver_test(self, backbone: torch.nn.Module, global_step: int):
         results = []
@@ -34,6 +35,14 @@ class CallBackVerification(object):
 
             self.summary_writer: SummaryWriter
             self.summary_writer.add_scalar(tag=self.ver_name_list[i], scalar_value=acc2, global_step=global_step, )
+            if self.wandb_logger:
+                import wandb
+                self.wandb_logger.log({
+                    f'Acc/val-Acc1 {self.ver_name_list[i]}': acc1,
+                    f'Acc/val-Acc2 {self.ver_name_list[i]}': acc2,
+                    # f'Acc/val-std1 {self.ver_name_list[i]}': std1,
+                    # f'Acc/val-std2 {self.ver_name_list[i]}': acc2,
+                })
 
             if acc2 > self.highest_acc_list[i]:
                 self.highest_acc_list[i] = acc2
@@ -57,12 +66,13 @@ class CallBackVerification(object):
 
 
 class CallBackLogging(object):
-    def __init__(self, frequent, total_step, batch_size, writer=None):
+    def __init__(self, frequent, total_step, batch_size, start_step=0,writer=None):
         self.frequent: int = frequent
         self.rank: int = distributed.get_rank()
         self.world_size: int = distributed.get_world_size()
         self.time_start = time.time()
         self.total_step: int = total_step
+        self.start_step: int = start_step
         self.batch_size: int = batch_size
         self.writer = writer
 
@@ -84,21 +94,26 @@ class CallBackLogging(object):
                 except ZeroDivisionError:
                     speed_total = float('inf')
 
-                time_now = (time.time() - self.time_start) / 3600
-                time_total = time_now / ((global_step + 1) / self.total_step)
-                time_for_end = time_total - time_now
+                #time_now = (time.time() - self.time_start) / 3600
+                #time_total = time_now / ((global_step + 1) / self.total_step)
+                #time_for_end = time_total - time_now
+                time_now = time.time()
+                time_sec = int(time_now - self.time_start)
+                time_sec_avg = time_sec / (global_step - self.start_step + 1)
+                eta_sec = time_sec_avg * (self.total_step - global_step - 1)
+                time_for_end = eta_sec/3600
                 if self.writer is not None:
                     self.writer.add_scalar('time_for_end', time_for_end, global_step)
                     self.writer.add_scalar('learning_rate', learning_rate, global_step)
                     self.writer.add_scalar('loss', loss.avg, global_step)
                 if fp16:
-                    msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.4f   Epoch: %d   Global Step: %d   " \
+                    msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.6f   Epoch: %d   Global Step: %d   " \
                           "Fp16 Grad Scale: %2.f   Required: %1.f hours" % (
                               speed_total, loss.avg, learning_rate, epoch, global_step,
                               grad_scaler.get_scale(), time_for_end
                           )
                 else:
-                    msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.4f   Epoch: %d   Global Step: %d   " \
+                    msg = "Speed %.2f samples/sec   Loss %.4f   LearningRate %.6f   Epoch: %d   Global Step: %d   " \
                           "Required: %1.f hours" % (
                               speed_total, loss.avg, learning_rate, epoch, global_step, time_for_end
                           )

@@ -27,8 +27,10 @@ def find_version(*file_paths):
 pypandoc_enabled = True
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
+    print('pandoc enabled')
+    long_description = pypandoc.convert_file('README.md', 'rst')
 except (IOError, ImportError, ModuleNotFoundError):
+    print('WARNING: pandoc not enabled')
     long_description = open('README.md').read()
     pypandoc_enabled = False
 
@@ -64,7 +66,10 @@ data_mesh = list(glob.glob('insightface/thirdparty/face3d/mesh/cython/*.h'))
 data_mesh += list(glob.glob('insightface/thirdparty/face3d/mesh/cython/*.c'))
 data_mesh += list(glob.glob('insightface/thirdparty/face3d/mesh/cython/*.py*'))
 
+data_objects = list(glob.glob('insightface/data/objects/*.pkl'))
+
 data_files = [ ('insightface/data/images', data_images) ]
+data_files += [ ('insightface/data/objects', data_objects) ]
 data_files += [ ('insightface/thirdparty/face3d/mesh/cython', data_mesh) ]
 
 ext_modules=cythonize(extensions)
@@ -77,6 +82,7 @@ setup(
     url='https://github.com/deepinsight/insightface',
     description='InsightFace Python Library',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     license='MIT',
     # Package info
     packages=find_packages(exclude=('docs', 'tests', 'scripts')),
